@@ -21,12 +21,8 @@ from sklearn.tree import DecisionTreeClassifier
 import os
 import glob
 
-def load_dataset(train_csv_path):
-    data = pd.read_csv(train_csv_path, sep=',')
-    return data
-
-def load_dataset(train_csv_path):
-    data = pd.read_csv(train_csv_path, sep=',')
+def load_dataset(csv_path):
+    data = pd.read_csv(csv_path, sep=',')
     return data
 
 class DataPreprocessor(object):
@@ -145,6 +141,8 @@ def get_csv_file(): # Assuming only one csv file exists
     extension = 'csv'
     os.chdir(path)
     csv_file = glob.glob('*.{}'.format(extension))
+    if csv_file == None:
+          raise TypeError
     return csv_file[0]
 
 if __name__ == '__main__':
